@@ -18,9 +18,9 @@ LuaC++ is a bridge between Lua and C++ which aims to remove the need to use the 
 Requirements
 ------------------------------
 LuaC++ makes use of the following C++0x features, which means your favorite compiler might not yet be able to compile and use LuaC++:
- * variadic templates
- * rvalue references
- * the <tuple> module
+* variadic templates
+* rvalue references
+* the <tuple> module
 
 License
 ==============================
