@@ -1,0 +1,113 @@
+#ifndef LCPP_STACK_H
+#define LCPP_STACK_H
+
+#include <type_traits>
+#include <tuple>
+#include <string>
+#include <sstream>
+
+#include <luacpp/error.hpp>
+#include <luacpp/reference.hpp>
+#include <luacpp/lua.hpp>
+
+#include <luacpp/tuplecall.hpp>
+
+namespace lua
+{
+	class table;
+	class function;
+
+	// from Lua
+	void getValue(lua_State* L, int index, table& r);
+	void getValue(lua_State* L, int index, function& r);
+	void getValue(lua_State* L, int index, lua_Integer& r);
+	void getValue(lua_State* L, int index, lua_Number& r);
+	void getValue(lua_State* L, int index, bool& r);
+	void getValue(lua_State* L, int index, const char*& r);
+	void getValue(lua_State* L, int index, const char*& r, size_t& len);
+	void getValue(lua_State* L, int index, std::string& r);
+
+	void getArg(lua_State* L, int index, table& r);
+	void getArg(lua_State* L, int index, function& r);
+	void getArg(lua_State* L, int index, lua_Integer& r);
+	void getArg(lua_State* L, int index, lua_Number& r);
+	void getArg(lua_State* L, int index, bool& r);
+	void getArg(lua_State* L, int index, const char*& r);
+	void getArg(lua_State* L, int index, std::string& r);
+
+	// to Lua
+	class reference;
+
+	void pushValue(lua_State* L, reference& ref);
+	void pushValue(lua_State* L, lua_Integer i);
+	void pushValue(lua_State* L, lua_Number n);
+	void pushValue(lua_State* L, bool b);
+	void pushValue(lua_State* L, const char* s);
+	void pushValue(lua_State* L, const char* s, size_t len);
+	void pushValue(lua_State* L, const std::string& str);
+	void pushValue(lua_State* L, lua_CFunction f);
+
+	template<int n, typename... Args>
+	struct luaToTuple
+	{
+		static void fill(lua_State* L, std::tuple<Args...>& args)
+		{
+			getArg(L, sizeof...(Args) - n + 1, std::get<sizeof...(Args) - n>(args));
+			luaToTuple<n - 1, Args...>::fill(L, args);
+		}
+	};
+
+	template<typename... Args>
+	struct luaToTuple<0, Args...>
+	{
+		static void fill(lua_State* L, std::tuple<Args...>& args) {}
+	};
+
+	// regular single return value
+	template<typename R, typename... Args>
+	struct tupleCaller
+	{
+		static int call(lua_State* L, R (*f)(Args...), std::tuple<Args...>& args)
+		{
+			R r = tuplecall::call(f, args);
+			pushValue(L, r);
+			return 1;
+		}
+	};
+
+	// no return value
+	template<typename... Args>
+	struct tupleCaller<void, Args...>
+	{
+		static int call(lua_State* L, void (*f)(Args...), std::tuple<Args...>& args)
+		{
+			tuplecall::call(f, args);
+			return 0;
+		}
+	};
+
+	template<typename R, typename... Args>
+	int functionWrapper(lua_State* L)
+	{
+		size_t top = lua_gettop(L);
+		if(top < sizeof...(Args))
+			luaL_error(L, "expected %d arguments, got %d", sizeof...(Args), top);
+
+		typedef R (*T)(Args...);
+		T f = (T)(lua_touserdata(L, lua_upvalueindex(1)));
+
+		std::tuple<Args...> args;
+		luaToTuple<sizeof...(Args), Args...>::fill(L, args);
+
+		return tupleCaller<R, Args...>::call(L, f, args);
+	}
+
+	template<typename R, typename... Args>
+	void pushValue(lua_State* L, R (*f)(Args...))
+	{
+		lua_pushlightuserdata(L, (void*)f);
+		lua_pushcclosure(L, functionWrapper<R, Args...>, 1);
+	}
+}
+
+#endif
