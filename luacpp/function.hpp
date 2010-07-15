@@ -9,7 +9,7 @@
 
 namespace lua
 {
-	class function : public reference
+	class function : virtual public reference
 	{
 		public:
 		function() : reference(){}

@@ -4,5 +4,6 @@
 #include "luacpp/state.hpp"
 #include "luacpp/table.hpp"
 #include "luacpp/function.hpp"
+#include "luacpp/object.hpp"
 
 #endif

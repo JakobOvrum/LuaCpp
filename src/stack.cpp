@@ -4,17 +4,8 @@
 #include <luacpp/reference.hpp>
 #include <luacpp/table.hpp>
 #include <luacpp/function.hpp>
+#include <luacpp/object.hpp>
 #include <luacpp/lua.hpp>
-
-namespace
-{
-	inline void assertArgType(lua_State* L, int narg, int type)
-	{
-		int t = lua_type(L, narg);
-		if(t != type)
-			luaL_typerror(L, narg, lua_typename(L, type));
-	}
-}
 
 namespace lua
 {
@@ -24,21 +15,14 @@ namespace lua
 		r = table(L, index);
 	}
 
-	void getArg(lua_State* L, int index, table& r)
-	{
-		assertArgType(L, index, LUA_TTABLE);
-		getValue(L, index, r);
-	}
-
 	void getValue(lua_State* L, int index, function& r)
 	{
 		r = function(L, index);
 	}
 
-	void getArg(lua_State* L, int index, function& r)
+	void getValue(lua_State* L, int index, object& r)
 	{
-		assertArgType(L, index, LUA_TFUNCTION);
-		getValue(L, index, r);
+		r = object(L, index);
 	}
 
 	void getValue(lua_State* L, int index, lua_Integer& r)
@@ -46,21 +30,9 @@ namespace lua
 		r = lua_tointeger(L, index);
 	}
 
-	void getArg(lua_State* L, int index, lua_Integer& r)
-	{
-		assertArgType(L, index, LUA_TNUMBER);
-		getValue(L, index, r);
-	}
-
 	void getValue(lua_State* L, int index, lua_Number& r)
 	{
 		r = lua_tonumber(L, index);
-	}
-
-	void getArg(lua_State* L, int index, lua_Number& r)
-	{
-		assertArgType(L, index, LUA_TNUMBER);
-		getValue(L, index, r);
 	}
 
 	void getValue(lua_State* L, int index, bool& r)
@@ -68,21 +40,9 @@ namespace lua
 		r = lua_toboolean(L, index);
 	}
 
-	void getArg(lua_State* L, int index, bool& r)
-	{
-		assertArgType(L, index, LUA_TBOOLEAN);
-		getValue(L, index, r);
-	}
-
 	void getValue(lua_State* L, int index, const char*& r)
 	{
 		r = lua_tostring(L, index);
-	}
-
-	void getArg(lua_State* L, int index, const char*& r)
-	{
-		assertArgType(L, index, LUA_TSTRING);
-		getValue(L, index, r);
 	}
 
 	void getValue(lua_State* L, int index, const char*& r, size_t& len)
@@ -95,12 +55,6 @@ namespace lua
 		size_t len;
 		const char* s = lua_tolstring(L, index, &len);
 		r = std::string(s, len);
-	}
-
-	void getArg(lua_State* L, int index, std::string& r)
-	{
-		assertArgType(L, index, LUA_TSTRING);
-		getValue(L, index, r);
 	}
 
 	// to Lua

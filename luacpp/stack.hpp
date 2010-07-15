@@ -8,6 +8,7 @@
 
 #include <luacpp/error.hpp>
 #include <luacpp/reference.hpp>
+#include <luacpp/types.hpp>
 #include <luacpp/lua.hpp>
 
 #include <luacpp/tuplecall.hpp>
@@ -16,10 +17,12 @@ namespace lua
 {
 	class table;
 	class function;
+	class object;
 
 	// from Lua
 	void getValue(lua_State* L, int index, table& r);
 	void getValue(lua_State* L, int index, function& r);
+	void getValue(lua_State* L, int index, object& r);
 	void getValue(lua_State* L, int index, lua_Integer& r);
 	void getValue(lua_State* L, int index, lua_Number& r);
 	void getValue(lua_State* L, int index, bool& r);
@@ -27,13 +30,21 @@ namespace lua
 	void getValue(lua_State* L, int index, const char*& r, size_t& len);
 	void getValue(lua_State* L, int index, std::string& r);
 
-	void getArg(lua_State* L, int index, table& r);
-	void getArg(lua_State* L, int index, function& r);
-	void getArg(lua_State* L, int index, lua_Integer& r);
-	void getArg(lua_State* L, int index, lua_Number& r);
-	void getArg(lua_State* L, int index, bool& r);
-	void getArg(lua_State* L, int index, const char*& r);
-	void getArg(lua_State* L, int index, std::string& r);
+	template<typename T>
+	inline void getArg(lua_State* L, int narg, T& r)
+	{
+		int type = typeOf<T>(L);
+		int t = lua_type(L, narg);
+		if(t != type)
+			luaL_typerror(L, narg, lua_typename(L, type));
+
+		getValue(L, narg, r);
+	}
+
+	inline void getArg(lua_State* L, int narg, object& r)
+	{
+		getValue(L, narg, r);
+	}
 
 	// to Lua
 	class reference;

@@ -8,7 +8,16 @@
 
 namespace lua
 {
-	class table : private reference
+	template<typename T>
+	inline void checkType(lua_State* L, int index)
+	{
+		assertType(L, -1, typeOf<T>(L));
+	}
+
+	template<>
+	inline void checkType<object>(lua_State* L, int index) {}
+
+	class table : virtual public reference
 	{
 		public:
 		table() : reference(){}
@@ -25,7 +34,7 @@ namespace lua
 			pushValue(state(), key);
 			lua_gettable(state(), -2);
 
-			assertType(state(), -1, typeOf<T>(state()));
+			checkType<T>(state(), -1);
 
 			T t;
 			getValue(state(), -1, t);
