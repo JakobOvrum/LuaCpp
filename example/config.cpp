@@ -8,7 +8,7 @@ struct Config
 	const char* bar;
 };
 
-Config loadConfig(const lua::table t)
+Config loadConfig(const lua::table& t)
 {
 	Config c;
 	c.foo = t["foo"];
