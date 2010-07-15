@@ -5,5 +5,6 @@
 #include "luacpp/table.hpp"
 #include "luacpp/function.hpp"
 #include "luacpp/object.hpp"
+#include "luacpp/nil.hpp"
 
 #endif

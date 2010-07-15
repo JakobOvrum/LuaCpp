@@ -97,4 +97,9 @@ namespace lua
 	{
 		lua_pushcfunction(L, f);
 	}
+
+	void pushValue(lua_State* L, nil_t& n)
+	{
+		lua_pushnil(L);
+	}
 }

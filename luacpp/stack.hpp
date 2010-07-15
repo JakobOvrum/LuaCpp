@@ -18,6 +18,7 @@ namespace lua
 	class table;
 	class function;
 	class object;
+	class nil_t;
 
 	// from Lua
 	void getValue(lua_State* L, int index, table& r);
@@ -57,6 +58,7 @@ namespace lua
 	void pushValue(lua_State* L, const char* s, size_t len);
 	void pushValue(lua_State* L, const std::string& str);
 	void pushValue(lua_State* L, lua_CFunction f);
+	void pushValue(lua_State* L, nil_t& n);
 
 	template<int n, typename... Args>
 	struct luaToTuple
