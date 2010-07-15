@@ -21,7 +21,7 @@ LuaC++ makes use of the following C++0x features, which means your favorite comp
 
  * variadic templates
  * rvalue references
- * the <tuple> module
+ * the tuple module
 
 Additionally, when linking with Lua, make sure your Lua is compiled as C++ instead of C. This is because LuaC++ uses exceptions for error handling, which doesn't go very well with the default long jump behaviour.
 
