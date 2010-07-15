@@ -13,14 +13,22 @@ namespace
 
 namespace lua
 {
-	state::state() : L(luaL_newstate()), _G(L, LUA_GLOBALSINDEX), _R(L, LUA_REGISTRYINDEX)
+	void state::init()
 	{
 		lua_atpanic(L, atpanic);
+
+		_G = table(L, LUA_GLOBALSINDEX);
+		_R = table(L, LUA_REGISTRYINDEX);
 	}
 
-	state::~state()
+	state::state() : L(luaL_newstate(), true)
 	{
-		lua_close(L);
+		init();
+	}
+
+	state::state(lua_State* L) : L(L, false)
+	{
+		init();
 	}
 
 	void state::openLibs()

@@ -11,7 +11,7 @@ namespace lua
 	{
 		public:
 		state();
-		virtual ~state();
+		state(lua_State* L);
 
 		void openLibs();
 		void doString(const char* code);
@@ -43,8 +43,23 @@ namespace lua
 		}
 
 		private:
-		lua_State* L;
+		void init();
+
+		// lua_State* resource handle, to cleanly make it destruct last
+		class handle
+		{
+			private:
+			lua_State* L;
+			bool owner;
+
+			public:
+			handle(lua_State* L, bool owner) : L(L), owner(owner) {}
+			~handle(){ if(owner) lua_close(L); }
+
+			inline operator lua_State*(){ return L; }
+		};
 		table _G, _R;
+		handle L;
 	};
 }
 
