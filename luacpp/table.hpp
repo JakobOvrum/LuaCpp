@@ -19,7 +19,7 @@ namespace lua
 		table getMetaTable();
 
 		template<typename T, typename U>
-		T get(U key)
+		T get(U key) const
 		{
 			push();
 			pushValue(state(), key);
@@ -58,7 +58,7 @@ namespace lua
 			}
 
 			template<typename U>
-			operator U()
+			operator U() const
 			{
 				return tab.get<U>(key);
 			}
@@ -72,6 +72,12 @@ namespace lua
 		index<T> operator[](T&& key)
 		{
 			return index<T>(*this, key);
+		}
+
+		template<typename T>
+		const index<T> operator[](T&& key) const
+		{
+			return index<T>(const_cast<lua::table&>(*this), key);
 		}
 	};
 }

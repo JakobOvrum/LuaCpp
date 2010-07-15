@@ -19,10 +19,13 @@ namespace lua
 		table& globals();
 		table& registry();
 
+		const table& globals() const;
+		const table& registry() const;
+
 		table newTable(int narr = 0, int nrec = 0);
 
 		template<typename T, typename U>
-		T get(U key)
+		T get(U key) const
 		{
 			return _G.get<T>(key);
 		}
@@ -34,7 +37,7 @@ namespace lua
 		}
 
 		template<typename T>
-		table::index<T> operator[](T&& key)
+		table::index<T> operator[](T&& key) const
 		{
 			return _G[key];
 		}

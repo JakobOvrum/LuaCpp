@@ -47,7 +47,17 @@ namespace lua
 		return _G;
 	}
 
+	const table& state::globals() const
+	{
+		return _G;
+	}
+
 	table& state::registry()
+	{
+		return _R;
+	}
+
+	const table& state::registry() const
 	{
 		return _R;
 	}

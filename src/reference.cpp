@@ -23,12 +23,17 @@ namespace lua
 		return *this;
 	}
 
-	void reference::push()
+	reference::reference(const reference& c)
+	{
+		*this = c;
+	}
+
+	void reference::push() const
 	{
 		lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 	}
 
-	type::luatype reference::type()
+	type::luatype reference::type() const
 	{
 		push();
 		int t = lua_type(L, -1);
@@ -36,7 +41,7 @@ namespace lua
 		return static_cast<type::luatype>(t);
 	}
 
-	const char* reference::typeName()
+	const char* reference::typeName() const
 	{
 		push();
 		const char* s = luaL_typename(L, -1);

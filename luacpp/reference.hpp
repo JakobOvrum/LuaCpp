@@ -12,17 +12,21 @@ namespace lua
 	{
 		public:
 		reference(lua_State* L, int index = -1);
+		reference(const reference& c);
 		virtual ~reference();
 
-		type::luatype type();
-		const char* typeName();
+		type::luatype type() const;
+		const char* typeName() const;
 
 		protected:
 		reference();
 		const reference& operator=(const reference& c);
 
-		void push();
-		inline lua_State* state(){ return L; }
+		void push() const;
+		inline lua_State* state() const
+		{
+			return L;
+		}
 
 		private:
 		int copyRef() const;
