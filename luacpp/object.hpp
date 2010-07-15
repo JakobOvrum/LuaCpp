@@ -1,6 +1,7 @@
 #ifndef LCPP_OBJECT_H
 #define LCPP_OBJECT_H
 
+#include <luacpp/stack.hpp>
 #include <luacpp/reference.hpp>
 #include <luacpp/table.hpp>
 #include <luacpp/function.hpp>
@@ -16,7 +17,18 @@ namespace lua
 
 		object(){}
 
-		private:
+		template<typename T>
+		operator T()
+		{
+			push();
+			assertType(state(), -1, typeOf<T>(state()));
+
+			T t;
+
+			getValue(state(), -1, t);
+
+			return t;
+		}
 	};
 }
 
