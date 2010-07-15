@@ -23,7 +23,7 @@ LuaC++ makes use of the following C++0x features, which means your favorite comp
  * rvalue references
  * the tuple module
 
-Additionally, when linking with Lua, make sure your Lua is compiled as C++ instead of C. This is because LuaC++ uses exceptions for error handling, which doesn't go very well with the default long jump behaviour.
+Additionally, as LuaC++ uses C++ exceptions for error handling, make sure your Lua library is compiled as C++.
 
 License
 ==============================
