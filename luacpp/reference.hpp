@@ -8,6 +8,8 @@ struct lua_State;
 
 namespace lua
 {
+	class object;
+
 	class reference
 	{
 		public:
@@ -35,6 +37,7 @@ namespace lua
 		int ref;
 
 		friend void pushValue(lua_State* L, reference& ref);
+		friend class object;
 	};
 }
 

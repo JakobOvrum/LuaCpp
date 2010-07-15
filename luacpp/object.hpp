@@ -29,6 +29,9 @@ namespace lua
 
 			return t;
 		}
+
+		bool operator==(const reference& r);
+		bool operator==(const nil_t& t);
 	};
 }
 
