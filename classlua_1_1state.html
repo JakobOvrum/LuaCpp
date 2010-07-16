@@ -19,6 +19,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -102,7 +103,10 @@ Public Member Functions</h2></td></tr>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Lua state. </p>
 <p>Object representing an instance of Lua. </p>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<dl><dt><b>Examples: </b></dt><dd>
+<p><a class="el" href="config_8cpp-example.html#_a1">config.cpp</a>, and <a class="el" href="hello_8cpp-example.html#_a0">hello.cpp</a>.</p>
+</dd>
+</dl><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa19192e30e08c5fcf0e98b068a45b4ce"></a><!-- doxytag: member="lua::state::state" ref="aa19192e30e08c5fcf0e98b068a45b4ce" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -181,7 +185,8 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="config_8cpp-example.html#a2">config.cpp</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="ad189600c485ecb2d9f1f48b45fb699e4"></a><!-- doxytag: member="lua::state::doString" ref="ad189600c485ecb2d9f1f48b45fb699e4" args="(const char *code)" -->
@@ -274,7 +279,8 @@ template&lt;typename T , typename U &gt; </div>
 
 <p>Get global table. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Reference to the global environment </dd></dl>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="config_8cpp-example.html#a3">config.cpp</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="a500bfbc3836f700eb668175584be8c8e"></a><!-- doxytag: member="lua::state::globals" ref="a500bfbc3836f700eb668175584be8c8e" args="() const " -->
@@ -351,7 +357,8 @@ template&lt;typename T , typename U &gt; </div>
 
 <p>Import in-built libraries. </p>
 <p>The in-built Lua standard library is not available until this function is called. </p>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hello_8cpp-example.html#a1">hello.cpp</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="a5be5ae9cc1909e98949f035f5a04d970"></a><!-- doxytag: member="lua::state::operator[]" ref="a5be5ae9cc1909e98949f035f5a04d970" args="(T &amp;&amp;key) const " -->
@@ -487,7 +494,7 @@ template&lt;typename T , typename U &gt; </div>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 16 2010 19:15:16 for LuaC++ by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 16 2010 19:24:35 for LuaC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
