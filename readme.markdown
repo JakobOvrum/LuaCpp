@@ -14,8 +14,13 @@ Hello, world!
 LuaC++
 ==============================
 LuaC++ is a bridge between Lua and C++ which aims to remove the need to use the C API, including the Lua stack. It currently supports Lua version 5.1.
+Check out the example/ and test/ subdirectories for usage examples.
 
-Check out the example/ and test/ subdirectories for usage examples.
+Documentation
+------------------------------
+Documentation can be browsed online [here](http://jakobovrum.github.com/LuaCpp/index.html), or checked out at the gh-pages branch.
+
+Alternatively, run `doxygen Doxyfile` from the project root directory to generate documentation from source (you might want to change the OUTPUT_DIRECTORY configuration value found in Doxyfile).
 
 Requirements
 ------------------------------
