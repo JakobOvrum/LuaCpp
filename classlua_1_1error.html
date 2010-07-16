@@ -74,7 +74,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Lua error exception. </p>
-<p>Thrown when an unhandled Lua error is raised (Lua panic). </p>
+<p>Thrown when an unhandled Lua error is raised. Keep in mind that the actual C++ exception is only thrown if Lua doesn't know what to do with one of its errors (Lua panic). This means that all cases of <a class="el" href="classlua_1_1error.html" title="Lua error exception.">lua::error</a> being thrown (as referenced in documentation) can, and will, be caught by protected Lua calls before being propagated as this exception. </p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4eb622160692bdef4ddae70f6552fe1f"></a><!-- doxytag: member="lua::error::error" ref="a4eb622160692bdef4ddae70f6552fe1f" args="(const char *what)" -->
 <div class="memitem">
@@ -120,7 +120,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 16 2010 18:18:08 for LuaC++ by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 16 2010 18:23:56 for LuaC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
