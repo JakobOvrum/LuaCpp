@@ -5,15 +5,19 @@
 
 namespace lua
 {
+	///Lua error exception
+	/**
+		Thrown when an unhandled Lua error is raised (Lua panic).
+	*/
 	class error : public std::runtime_error
 	{
 		public:
-		error(const char* what, int errcode = 0);
-
-		int code();
-
-		private:
-		int err;
+		///Basic constructor
+		/**
+			@param what error message
+			\internal
+		*/
+		error(const char* what);
 	};
 }
 

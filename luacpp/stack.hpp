@@ -1,12 +1,9 @@
 #ifndef LCPP_STACK_H
 #define LCPP_STACK_H
 
-#include <type_traits>
 #include <tuple>
 #include <string>
-#include <sstream>
 
-#include <luacpp/error.hpp>
 #include <luacpp/reference.hpp>
 #include <luacpp/types.hpp>
 #include <luacpp/lua.hpp>

@@ -3,10 +3,19 @@
 
 namespace lua
 {
-	class nil_t
+	///Unique type representing Lua nil
+	/**
+		Use the constant lua::nil.
+	*/
+	struct nil_t
 	{
 	};
 
+	///Object instance representing Lua nil
+	/**
+		Useful for clearing keys in tables.
+		@see table::index
+	*/
 	extern nil_t nil;
 }
 
