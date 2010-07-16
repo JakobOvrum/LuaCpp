@@ -1,6 +1,7 @@
 #ifndef LCPP_LUACPP_H
 #define LCPP_LUACPP_H
 
+// doxygen index
 /**
 	@mainpage
 	@section hello_sec Hello, world!
@@ -24,6 +25,12 @@ int main()
 
 	@section download_sec Download
 	Full source code can be found at http://github.com/JakobOvrum/LuaCpp
+*/
+
+//doxygen examples
+/**
+	@example hello.cpp
+	@example config.cpp
 */
 
 #include "luacpp/error.hpp"
