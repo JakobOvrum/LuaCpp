@@ -15,6 +15,8 @@ LuaC++
 ==============================
 LuaC++ is a bridge between Lua and C++ which aims to remove the need to use the C API, including the Lua stack. It currently supports Lua version 5.1.
 
+Check out the example/ and test/ subdirectories for usage examples.
+
 Requirements
 ------------------------------
 LuaC++ makes use of the following C++0x features, which means your favorite compiler might not yet be able to compile and use LuaC++:
