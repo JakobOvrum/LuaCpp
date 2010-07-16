@@ -56,34 +56,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor">#include &lt;luacpp/stack.hpp&gt;</span>
 <a name="l00008"></a>00008 <span class="preprocessor">#include &lt;luacpp/lua.hpp&gt;</span>
 <a name="l00009"></a>00009 
-<a name="l00010"></a><a class="code" href="classlua_1_1function.html#a3f9381d09c31a8d5a318f0854c007482">00010</a> <span class="keyword">namespace </span>lua
-<a name="l00011"></a><a class="code" href="classlua_1_1function.html">00011</a> {
+<a name="l00010"></a>00010 <span class="keyword">namespace </span>lua
+<a name="l00011"></a>00011 {
 <a name="l00013"></a>00013 
-<a name="l00016"></a>00016     <span class="keyword">class </span><a class="code" href="classlua_1_1function.html" title="Lua function.">function</a> : <span class="keyword">virtual</span> <span class="keyword">public</span> reference
+<a name="l00016"></a><a class="code" href="classlua_1_1function.html">00016</a>     <span class="keyword">class </span><a class="code" href="classlua_1_1function.html" title="Lua function.">function</a> : <span class="keyword">virtual</span> <span class="keyword">public</span> reference
 <a name="l00017"></a>00017     {
-<a name="l00018"></a><a class="code" href="classlua_1_1function.html#ac9cf5427ed0aa3ad6f09a9482b4a7681">00018</a>         <span class="keyword">public</span>:
+<a name="l00018"></a>00018         <span class="keyword">public</span>:
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021         <a class="code" href="classlua_1_1function.html#a3f9381d09c31a8d5a318f0854c007482" title="Create empty reference to function.">function</a>() : reference(){}
+<a name="l00021"></a><a class="code" href="classlua_1_1function.html#a3f9381d09c31a8d5a318f0854c007482">00021</a>         <a class="code" href="classlua_1_1function.html#a3f9381d09c31a8d5a318f0854c007482" title="Create empty reference to function.">function</a>() : reference(){}
 <a name="l00022"></a>00022 
 <a name="l00024"></a>00024 
-<a name="l00029"></a>00029         <a class="code" href="classlua_1_1function.html#a3f9381d09c31a8d5a318f0854c007482" title="Create empty reference to function.">function</a>(lua_State* L, <span class="keywordtype">int</span> index = -1) : reference(L, index)
+<a name="l00029"></a><a class="code" href="classlua_1_1function.html#ac9cf5427ed0aa3ad6f09a9482b4a7681">00029</a>         <a class="code" href="classlua_1_1function.html#a3f9381d09c31a8d5a318f0854c007482" title="Create empty reference to function.">function</a>(lua_State* L, <span class="keywordtype">int</span> index = -1) : reference(L, index)
 <a name="l00030"></a>00030         {
 <a name="l00031"></a>00031             assertType(L, index, type::function);
 <a name="l00032"></a>00032         }
 <a name="l00033"></a>00033 
 <a name="l00035"></a>00035 
 <a name="l00038"></a>00038         <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Args&gt;
-<a name="l00039"></a>00039         <span class="keywordtype">void</span> <a class="code" href="classlua_1_1function.html#ae31e7f5c14d4572e3ba8d22bd5e2191e" title="Call this function.">operator()</a>(Args&amp;&amp;... args)
+<a name="l00039"></a><a class="code" href="classlua_1_1function.html#ae31e7f5c14d4572e3ba8d22bd5e2191e">00039</a>         <span class="keywordtype">void</span> <a class="code" href="classlua_1_1function.html#ae31e7f5c14d4572e3ba8d22bd5e2191e" title="Call this function.">operator()</a>(Args&amp;&amp;... args)
 <a name="l00040"></a>00040         {
 <a name="l00041"></a>00041             push();
-<a name="l00042"></a>00042             pushArg(state(), args...);
-<a name="l00043"></a>00043             lua_call(state(), <span class="keyword">sizeof</span>...(args), 0);
-<a name="l00044"></a><a class="code" href="classlua_1_1function.html#a1d769d37a4fd4664beff91f806641e16">00044</a>         }
+<a name="l00042"></a>00042             pushArg(<a class="code" href="classlua_1_1state.html" title="Lua state.">state</a>(), args...);
+<a name="l00043"></a>00043             lua_call(<a class="code" href="classlua_1_1state.html" title="Lua state.">state</a>(), <span class="keyword">sizeof</span>...(args), 0);
+<a name="l00044"></a>00044         }
 <a name="l00045"></a>00045 
 <a name="l00047"></a>00047 
 <a name="l00053"></a>00053         <span class="comment">// with return values</span>
 <a name="l00054"></a>00054         <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Rets, <span class="keyword">typename</span>... Args&gt;
-<a name="l00055"></a>00055         std::tuple&lt;Rets...&gt; <a class="code" href="classlua_1_1function.html#a1d769d37a4fd4664beff91f806641e16" title="Call this function and get return value(s).">call</a>(Args&amp;&amp;... args)
+<a name="l00055"></a><a class="code" href="classlua_1_1function.html#a1d769d37a4fd4664beff91f806641e16">00055</a>         std::tuple&lt;Rets...&gt; <a class="code" href="classlua_1_1function.html#a1d769d37a4fd4664beff91f806641e16" title="Call this function and get return value(s).">call</a>(Args&amp;&amp;... args)
 <a name="l00056"></a>00056         {
 <a name="l00057"></a>00057             push();
 <a name="l00058"></a>00058             pushArg(<a class="code" href="classlua_1_1state.html" title="Lua state.">state</a>(), args...);
@@ -124,7 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 16 2010 18:23:56 for LuaC++ by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 16 2010 19:15:15 for LuaC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

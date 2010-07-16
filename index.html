@@ -43,6 +43,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>LuaC++ Documentation</h1>  </div>
 </div>
 <div class="contents">
+<h2><a class="anchor" id="hello_sec"></a>
+Hello, world!</h2>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">#include &lt;luacpp.hpp&gt;</span>
+
+<span class="keywordtype">int</span> main()
+{
+    <a class="code" href="classlua_1_1state.html" title="Lua state.">lua::state</a> lua;
+    lua.<a class="code" href="classlua_1_1state.html#ab46f7157278e8801bf640ab9c00f1ad9" title="Import in-built libraries.">openLibs</a>();
+
+    <a class="code" href="classlua_1_1function.html" title="Lua function.">lua::function</a> print = lua[<span class="stringliteral">&quot;print&quot;</span>];
+    print(<span class="stringliteral">&quot;Hello, world!&quot;</span>);
+}
+</pre></div><h2><a class="anchor" id="intro_sec"></a>
+Introduction</h2>
+<p>LuaC++ is a bridge between Lua and C++ which aims to remove the need to use the C API, including the Lua stack. It currently supports Lua version 5.1.</p>
+<h2><a class="anchor" id="download_sec"></a>
+Download</h2>
+<p>Full source code can be found at <a href="http://github.com/JakobOvrum/LuaCpp">http://github.com/JakobOvrum/LuaCpp</a> </p>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -58,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 16 2010 18:23:56 for LuaC++ by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 16 2010 19:15:15 for LuaC++ by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
