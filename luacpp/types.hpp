@@ -37,48 +37,56 @@ namespace lua
     template<typename T>
     inline type::luatype typeOf(lua_State* L)
     {
+        (void)(L); // Unused.
         return type::none;
     }
 
     template<>
     inline type::luatype typeOf<table>(lua_State* L)
     {
+        (void)(L); // Unused.
         return type::table;
     }
 
     template<>
     inline type::luatype typeOf<function>(lua_State* L)
     {
+        (void)(L); // Unused.
         return type::function;
     }
 
     template<>
     inline type::luatype typeOf<lua_Number>(lua_State* L)
     {
+        (void)(L); // Unused.
         return type::number;
     }
 
     template<>
     inline type::luatype typeOf<lua_Integer>(lua_State* L)
     {
+        (void)(L); // Unused.
         return type::number;
     }
 
     template<>
     inline type::luatype typeOf<bool>(lua_State* L)
     {
+        (void)(L); // Unused.
         return type::boolean;
     }
 
     template<>
     inline type::luatype typeOf<const char*>(lua_State* L)
     {
+        (void)(L); // Unused.
         return type::string;
     }
 
     template<>
     inline type::luatype typeOf<std::string>(lua_State* L)
     {
+        (void)(L); // Unused.
         return type::string;
     }
 }

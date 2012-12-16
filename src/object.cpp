@@ -14,6 +14,8 @@ namespace lua
 
     bool object::operator==(const nil_t& n)
     {
+        (void)(n); // Unused.
+
         push();
         bool b = lua_isnil(state(), -1);
         lua_pop(state(), 1);

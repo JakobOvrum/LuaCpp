@@ -60,6 +60,7 @@ namespace lua
     // to Lua
     void pushValue(lua_State* L, reference& ref)
     {
+        (void)(L); // Unused.
         ref.push();
     }
 
@@ -100,6 +101,7 @@ namespace lua
 
     void pushValue(lua_State* L, nil_t& n)
     {
+        (void)(n); // Unused.
         lua_pushnil(L);
     }
 }

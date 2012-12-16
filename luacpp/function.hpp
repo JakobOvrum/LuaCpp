@@ -72,7 +72,10 @@ namespace lua
             pushArg(L, args...);
         }
 
-        void pushArg(lua_State* L){}
+        void pushArg(lua_State* L)
+        {
+            (void)(L); // Unused.
+        }
     };
 }
 

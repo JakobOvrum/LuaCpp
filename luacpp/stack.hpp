@@ -70,7 +70,11 @@ namespace lua
     template<typename... Args>
     struct luaToTuple<0, Args...>
     {
-        static void fill(lua_State* L, std::tuple<Args...>& args) {}
+        static void fill(lua_State* L, std::tuple<Args...>& args)
+        {
+            (void)(L); // Unused.
+            (void)(args); // Unused.
+        }
     };
 
     // regular single return value
@@ -91,6 +95,7 @@ namespace lua
     {
         static int call(lua_State* L, void (*f)(Args...), std::tuple<Args...>& args)
         {
+            (void)(L); // Unused.
             tuplecall::call(f, args);
             return 0;
         }

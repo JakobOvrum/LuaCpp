@@ -11,11 +11,16 @@ namespace lua
     template<typename T>
     inline void checkType(lua_State* L, int index)
     {
+        (void)(index); // Unused.
         assertType(L, -1, typeOf<T>(L));
     }
 
     template<>
-    inline void checkType<object>(lua_State* L, int index) {}
+    inline void checkType<object>(lua_State* L, int index)
+    {
+        (void)(L);
+        (void)(index);
+    }
 
     ///Lua table
     /**
