@@ -7,7 +7,7 @@ namespace lua
     /**
         Use the constant lua::nil.
     */
-    struct nil_t
+    class nil_t
     {
     };
 
