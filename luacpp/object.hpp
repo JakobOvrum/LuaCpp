@@ -8,31 +8,31 @@
 
 namespace lua
 {
-	class object : virtual public reference, public table, public function
-	{
-		public:
-		object(lua_State* L, int index) : reference(L, index)
-		{
-		}
+    class object : virtual public reference, public table, public function
+    {
+        public:
+        object(lua_State* L, int index) : reference(L, index)
+        {
+        }
 
-		object(){}
+        object(){}
 
-		template<typename T>
-		operator T()
-		{
-			push();
-			assertType(state(), -1, typeOf<T>(state()));
+        template<typename T>
+        operator T()
+        {
+            push();
+            assertType(state(), -1, typeOf<T>(state()));
 
-			T t;
+            T t;
 
-			getValue(state(), -1, t);
+            getValue(state(), -1, t);
 
-			return t;
-		}
+            return t;
+        }
 
-		bool operator==(const reference& r);
-		bool operator==(const nil_t& t);
-	};
+        bool operator==(const reference& r);
+        bool operator==(const nil_t& t);
+    };
 }
 
 #endif

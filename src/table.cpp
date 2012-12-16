@@ -3,8 +3,8 @@
 
 namespace lua
 {
-	table::table(lua_State* L, int index) : reference(L, index)
-	{
-		assertType(L, index, type::table);
-	}
+    table::table(lua_State* L, int index) : reference(L, index)
+    {
+        assertType(L, index, type::table);
+    }
 }

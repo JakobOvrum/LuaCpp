@@ -3,7 +3,7 @@
 
 namespace lua
 {
-	error::error(const char* what) : std::runtime_error(what)
-	{
-	}
+    error::error(const char* what) : std::runtime_error(what)
+    {
+    }
 }
